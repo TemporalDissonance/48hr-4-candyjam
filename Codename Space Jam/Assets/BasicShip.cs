@@ -11,7 +11,8 @@ public class BasicShip : MonoBehaviour {
     private float vertical;
     private Vector3 deltav;
     private Rigidbody body;
-	public Launcher launcher;
+	public Transform myweapon;
+	public GameObject missile;
 
     // Use this for initialization
     void Start()
@@ -20,6 +21,11 @@ public class BasicShip : MonoBehaviour {
         turnrate = 2f;
         body = GetComponent<Rigidbody>();
     }
+
+	public void Fire()
+	{
+		Instantiate(missile, myweapon.position, myweapon.rotation);
+	}
 
     void FixedUpdate()
     {
