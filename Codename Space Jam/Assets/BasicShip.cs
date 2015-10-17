@@ -24,12 +24,18 @@ public class BasicShip : MonoBehaviour {
     private Rigidbody body;
 	public Transform myweapon;
 	public GameObject missile;
+    public float fuel;
+    public float burnrate;
+
+    private Vector3 currentrotation;
 
     // Use this for initialization
     void Start()
     {
         thrust = 0.2f;
-        turnrate = 2f;
+        turnrate = 0f;
+        fuel = 100f;
+        burnrate = 1f;
         body = GetComponent<Rigidbody>();
     }
 
@@ -40,9 +46,11 @@ public class BasicShip : MonoBehaviour {
 
     void FixedUpdate()
     {
+
 		deltav.x = 0;
 		deltav.y = 0;
 		deltav.z = 0;
+        turnrate = 0;
 
 		if (command_rotatecw == ButtonState.DOWN) {
 			RotateCW();
@@ -75,7 +83,8 @@ public class BasicShip : MonoBehaviour {
 		*/
 
         body.velocity = body.velocity + thrust * deltav;
-        //body.rotation = Quaternion.Slerp(body.rotation, Quaternion.LookRotation(deltav, yaxis), turnrate * Time.deltaTime);
+        currentrotation = body.rotation.eulerAngles;
+        body.rotation = Quaternion.Euler (currentrotation.x, currentrotation.y + turnrate * Time.deltaTime, currentrotation.z);
 
     }
 
@@ -101,27 +110,43 @@ public class BasicShip : MonoBehaviour {
 	}
 
 	public void RotateCW() {
-		turnrate = 2f;
+		turnrate = 200f;
 	}
 
 	public void RotateCCW() {
-		turnrate = -2f;
+		turnrate = -200f;
 	}
 
 	public void ThrustForward() {
-		deltav.z = 1;
-	}
+        if (fuel > 0)
+        {
+            deltav.z = 1;
+            fuel = fuel - burnrate * Time.fixedDeltaTime;
+        }
+    }
 
 	public void ThrustBackward() {
-		deltav.z = -1;
+        if (fuel > 0)
+        {
+            deltav.z = -1;
+            fuel = fuel - burnrate * Time.fixedDeltaTime;
+        }
 	}
 
 	public void ThrustLeft() {
-		deltav.x = -1;
+        if (fuel > 0)
+        {
+            deltav.x = -1;
+            fuel = fuel - burnrate * Time.fixedDeltaTime;
+        }
 	}
 
 	public void ThrustRight() {
-		deltav.x = 1;
+        if(fuel > 0)
+        {
+            deltav.x = 1;
+            fuel = fuel - burnrate * Time.fixedDeltaTime;
+        }
 	}
 
 	public void Alt() {
