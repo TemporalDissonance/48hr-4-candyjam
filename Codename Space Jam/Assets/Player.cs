@@ -18,7 +18,7 @@ public class Player : MonoBehaviour {
 			ship.GetComponent<BasicShip>().Fire();
 		}
 		*/
-		ship.GetComponent<BasicShip>().SetHorizontal(controller.horizontal);
-		ship.GetComponent<BasicShip>().SetVertical(controller.vertical);
+		//ship.GetComponent<BasicShip>().SetHorizontal(controller.horizontal);
+		//ship.GetComponent<BasicShip>().SetVertical(controller.vertical);
 	}
 }

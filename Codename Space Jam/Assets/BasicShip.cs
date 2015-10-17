@@ -40,16 +40,43 @@ public class BasicShip : MonoBehaviour {
 
     void FixedUpdate()
     {
-        deltav.x = horizontal;
-        deltav.z = vertical;
-        deltav.y = 0;
+		deltav.x = 0;
+		deltav.y = 0;
+		deltav.z = 0;
 
-        body.velocity = body.velocity + thrust * deltav;
-        body.rotation = Quaternion.Slerp(body.rotation, Quaternion.LookRotation(deltav, yaxis), turnrate * Time.deltaTime);
-
-		if (command_fire == ButtonState.PRESSED) {
+		if (command_rotatecw == ButtonState.DOWN) {
+			RotateCW();
+		}
+		if (command_rotateccw == ButtonState.DOWN) {
+			RotateCCW ();
+		}
+		if (command_thrust_forward == ButtonState.DOWN) {
+			ThrustForward();
+		}
+		if (command_thrust_backward == ButtonState.DOWN) {
+			ThrustBackward();
+		}
+		if (command_thrust_left == ButtonState.DOWN) {
+			ThrustLeft ();
+		}
+		if (command_thrust_right == ButtonState.DOWN) {
+			ThrustRight ();
+		}
+		if (command_fire == ButtonState.DOWN) {
 			Fire ();
 		}
+		if (command_alt_control == ButtonState.DOWN) {
+			Alt ();
+		}
+
+		/*deltav.x = horizontal;
+        deltav.z = vertical;
+        deltav.y = 0;
+		*/
+
+        body.velocity = body.velocity + thrust * deltav;
+        //body.rotation = Quaternion.Slerp(body.rotation, Quaternion.LookRotation(deltav, yaxis), turnrate * Time.deltaTime);
+
     }
 
     public void SetHorizontal(float in_horizontal)
@@ -63,16 +90,40 @@ public class BasicShip : MonoBehaviour {
     }
 
 	public void Buttons(Controller controller) {
-		command_rotatecw = ButtonState.UP;
-		command_rotateccw = ButtonState.UP;
-		command_thrust_forward = ButtonState.UP;
-		command_thrust_backward = ButtonState.UP;
-		command_thrust_left = ButtonState.UP;
-		command_thrust_right = ButtonState.UP;
-		command_fire = ButtonState.UP;
-		command_alt_control = ButtonState.UP;
-
+		command_rotatecw = controller.GetButtonState(controller.rotateRMap);
+		command_rotateccw = controller.GetButtonState(controller.rotateLMap);
+		command_thrust_forward = controller.GetButtonState(controller.thrustUMap);
+		command_thrust_backward = controller.GetButtonState(controller.thrustDMap);
+		command_thrust_left = controller.GetButtonState(controller.thrustLMap);
+		command_thrust_right = controller.GetButtonState(controller.thrustRMap);
 		command_fire = controller.GetButtonState(controller.fireMap);
 		command_alt_control = controller.GetButtonState(controller.altMap);
+	}
+
+	public void RotateCW() {
+		turnrate = 2f;
+	}
+
+	public void RotateCCW() {
+		turnrate = -2f;
+	}
+
+	public void ThrustForward() {
+		deltav.z = 1;
+	}
+
+	public void ThrustBackward() {
+		deltav.z = -1;
+	}
+
+	public void ThrustLeft() {
+		deltav.x = -1;
+	}
+
+	public void ThrustRight() {
+		deltav.x = 1;
+	}
+
+	public void Alt() {
 	}
 }
