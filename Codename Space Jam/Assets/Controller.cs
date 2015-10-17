@@ -1,29 +1,36 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum ButtonState {
+	UP,
+	PRESSED,
+	DOWN,
+	RELEASED
+};
+
+
 public class Controller : MonoBehaviour {
  
 	public string horizontalMap;
 	public string verticalMap;
 	public string rotateMap;
 	public string fireMap;
+	public string altMap;
 	public float horizontal;
 	public float vertical;
-	public bool fire;
 	
     void Start()
     {
 		horizontalMap = "Horizontal";
 		verticalMap = "Vertical";
 		fireMap = "Fire1";
+		altMap = "Fire2";
     }
 
 	void Update() 
 	{
 		horizontal = Input.GetAxis (horizontalMap);
 		vertical = Input.GetAxis (verticalMap);
-		fire = Input.GetButton(fireMap);
-		//if (Input.GetButton (fire)) {
 			//OurShip.Fire ();
 		//}
 	}
@@ -34,4 +41,15 @@ public class Controller : MonoBehaviour {
        //OurShip.SetHorizontal(Input.GetAxis(horizontal));
        //OurShip.SetVertical(Input.GetAxis(vertical));
     }
+
+	public ButtonState GetButtonState(string map) {
+		if (Input.GetButtonDown (map))
+			return ButtonState.PRESSED;
+		else if (Input.GetButton (map))
+			return ButtonState.DOWN;
+		else if (Input.GetButtonUp (map))
+			return  ButtonState.RELEASED;
+		return ButtonState.UP;
+	}
 }
+

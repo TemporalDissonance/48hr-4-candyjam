@@ -11,11 +11,13 @@ public class Player : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
+		ship.GetComponent<BasicShip>().Buttons(controller);
 		//ship.GetComponent<BasicShip>().Buttons (controller);
-		if (controller.fire) {
+		/*if (controller.fire) {
 			ship.GetComponent<BasicShip>().Fire();
 		}
+		*/
 		ship.GetComponent<BasicShip>().SetHorizontal(controller.horizontal);
 		ship.GetComponent<BasicShip>().SetVertical(controller.vertical);
 	}
