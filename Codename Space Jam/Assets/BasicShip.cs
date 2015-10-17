@@ -9,6 +9,7 @@ public class BasicShip : MonoBehaviour {
     private Vector3 yaxis = new Vector3(0.0f, 1.0f, 0.0f);
     private float horizontal;
     private float vertical;
+	private bool fire;
     private Vector3 deltav;
     private Rigidbody body;
 	public Transform myweapon;
@@ -46,4 +47,11 @@ public class BasicShip : MonoBehaviour {
     {
         vertical = in_vertical;
     }
+
+	/*public void Buttons(Controller controller) {
+		horizontal = controller.horizontal;
+		vertical = controller.vertical;
+		fire = controller.fire;
+
+	}*/
 }
