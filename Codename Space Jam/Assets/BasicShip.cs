@@ -11,6 +11,7 @@ public class BasicShip : MonoBehaviour {
     private float vertical;
     private Vector3 deltav;
     private Rigidbody body;
+	public Launcher launcher;
 
     // Use this for initialization
     void Start()
