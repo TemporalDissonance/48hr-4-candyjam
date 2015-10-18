@@ -51,7 +51,7 @@ public class BasicShip : MonoBehaviour {
         hull = 100;
         fuel = 100f;
         burnrate = 1f;
-        ammo = 3;
+        ammo = 10;
         body = GetComponent<Rigidbody>();
         fuelreadout = GetComponentInParent<Player>().GetComponentInChildren<Fuel_Value>();
         ammoreadout = GetComponentInParent<Player>().GetComponentInChildren<Ammo_Value>();
