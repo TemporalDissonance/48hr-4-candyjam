@@ -8,7 +8,16 @@ public class Earth : MonoBehaviour {
         if (other.CompareTag("P2Ship"))
         {
             Player.winningplayer = 2;
-            Application.LoadLevel("gameover");
+			GameObject gameControllerObject = GameObject.FindGameObjectWithTag ("GameController");
+			if (gameControllerObject != null)
+			{
+				GameController gameController = gameControllerObject.GetComponent <GameController>();
+				gameController.GameOver();
+			}
+			if (gameControllerObject == null)
+			{
+				Debug.Log ("Cannot find 'GameController' script");
+			}          
         }
     }
 
