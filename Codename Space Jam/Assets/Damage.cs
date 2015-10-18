@@ -9,8 +9,8 @@ public class Damage : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if (gameObject.tag == "P1Ship" || gameObject.tag == "P2Ship") {
-			structuralIntegrity = 50;
-			damageValue = 10;
+			structuralIntegrity = 100;
+			damageValue = 50;
 		} else if (gameObject.tag == "Asteroid") {
 			structuralIntegrity = 30;
 			damageValue = 10;
