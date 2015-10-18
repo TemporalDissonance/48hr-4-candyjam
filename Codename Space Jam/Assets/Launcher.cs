@@ -11,47 +11,53 @@ public class Launcher : Weapon {
 	//public ButtonState command_thrust_backward;
 	//public ButtonState command_thrust_left;
 	//public ButtonState command_thrust_right;
-	public GameObject firedMissile;
+	//public GameObject firedMissile;
+	public List<GameObject> missiles;
 	public float missileTime;
 	public float detonateDelay;
 	// Use this for initialization
 	void Start () {
-		firedMissile = null;
+		//firedMissile = null;
 		missileTime = 0;
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if (firedMissile != null) {
-			missileTime += Time.fixedDeltaTime;
-		}
-			
-		/*for (int i = missiles.Count-1; i > 0; i--) {
-			if (missiles[i]==null) {
-				missiles.RemoveAt (i);
+		missileTime += Time.fixedDeltaTime;
+
+		if (missiles.Count > 0) {
+			for (int i = missiles.Count-1; i > 0; i--) {
+				if (missiles [i] == null) {
+					missiles.RemoveAt (i);
+				}
 			}
-		}*/
+		}
 	}
 
 	public void Buttons(Controller controller) {
-		/*foreach (GameObject element in missiles) {
+		foreach (GameObject element in missiles) {
 			if (element != null) {
 				element.GetComponent<Missile_Mover>().Buttons(controller);
 			}
-		}*/
-		if (firedMissile != null) {
-			firedMissile.GetComponent<Missile_Mover> ().Buttons (controller);
 		}
+		/*if (firedMissile != null) {
+			firedMissile.GetComponent<Missile_Mover> ().Buttons (controller);
+		}*/
 	}
 
 	public void Fire() {
-		if (firedMissile == null) {
+		/*if (firedMissile == null) {
 			firedMissile = Instantiate (missile, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
 			missileTime = 0;
 		} else {
 			if (missileTime > detonateDelay) {
 				firedMissile.GetComponent<DestroyByContact>().selfDestruct();
 			}
+		}*/
+		if (missileTime > detonateDelay) {
+			missiles.Add (Instantiate (missile, gameObject.transform.position, gameObject.transform.rotation) as GameObject);
+			missileTime = 0;
 		}
+
 	}
 }
