@@ -28,27 +28,50 @@ public class BasicShip : MonoBehaviour {
 	//public List<GameObject> weapons;
     public float fuel;
     public float burnrate;
+    public int hull;
+    public int ammo;
+    private Fuel_Value fuelreadout;
+    private Ammo_Value ammoreadout;
+    private Hull_Value hullreadout;
 
     private Vector3 currentrotation;
+
+    void ReportHUD()
+    {
+        fuelreadout.Display_Value(fuel);
+        ammoreadout.Display_Value(ammo);
+        hullreadout.Display_Value(hull);
+    }
 
     // Use this for initialization
     void Start()
     {
         thrust = 0.2f;
         turnrate = 0f;
+        hull = 100;
         fuel = 100f;
         burnrate = 1f;
+        ammo = 3;
         body = GetComponent<Rigidbody>();
+        fuelreadout = GetComponentInParent<Player>().GetComponentInChildren<Fuel_Value>();
+        ammoreadout = GetComponentInParent<Player>().GetComponentInChildren<Ammo_Value>();
+        hullreadout = GetComponentInParent<Player>().GetComponentInChildren<Hull_Value>();
     }
 
 	public void Fire()
 	{
-		myweapon.GetComponent<Launcher> ().Fire ();
-		//GameObject clone = Instantiate(missile, myweapon.transform.position, myweapon.transform.rotation) as GameObject;
-	}
+        if(ammo >= 1)
+        {
+            myweapon.GetComponent<Launcher>().Fire();
+            //GameObject clone = Instantiate(missile, myweapon.transform.position, myweapon.transform.rotation) as GameObject;
+            ammo--;
+        }
+
+    }
 
     void FixedUpdate()
     {
+        ReportHUD();
 
 		deltav.x = 0;
 		deltav.y = 0;
