@@ -23,6 +23,8 @@ public class DestroyByContact : MonoBehaviour {
 	
 	void OnTriggerEnter (Collider other)
 	{
+
+
 		if (other.tag == "Boundary" || other.tag == "Wall" || other.tag == ownerTag)
 		{
 			return;
