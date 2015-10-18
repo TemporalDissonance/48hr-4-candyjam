@@ -45,7 +45,7 @@ public class BasicShip : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        thrust = 0.01f;
+        thrust = 0.05f;
         turnrate = 0f;
         fuel = 100f;
         burnrate = 2f;
@@ -106,10 +106,10 @@ public class BasicShip : MonoBehaviour {
 			ThrustForward ();
 		}
 
-		if (fuel <= 0 && ammo <= 0) {
-			if (gameObject.tag == "P1SHIP") {
+		if (fuel <= 0.5f && ammo <= 0.5f) {
+			if (gameObject.tag == "P1Ship") {
 				Player.P1OUT = true;
-			} else if (gameObject.tag == "P2SHIP") {
+			} else if (gameObject.tag == "P2Ship") {
 				Player.P2OUT = true;
 			}
 		}
