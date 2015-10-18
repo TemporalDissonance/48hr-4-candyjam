@@ -49,7 +49,8 @@ public class GameOverMenu : MonoBehaviour {
 		else if (Player.winningplayer == GameOverState.NOONEWINS)
 		{
 			thetitle.ChangeTitle("It's a tie!");
-			theexplanation.AddExplanation("With both starships stupidly out of ammo and fuel, both planets looked on in boredom.");
+            explanationtext = Resources.Load("NOONEDIES") as TextAsset;
+            theexplanation.AddExplanation(explanationtext.text);
 		}
     }
 	
