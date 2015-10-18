@@ -11,14 +11,19 @@ public class Launcher : Weapon {
 	//public ButtonState command_thrust_backward;
 	//public ButtonState command_thrust_left;
 	//public ButtonState command_thrust_right;
-	public List<GameObject> missiles;
+	public GameObject firedMissile;
+	public float missileTime;
 	// Use this for initialization
 	void Start () {
-	
+		firedMissile = null;
+		missileTime = 0;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
+		if (firedMissile != null) {
+			missileTime += Time.fixedDeltaTime;
+		}
 		/*for (int i = missiles.Count-1; i > 0; i--) {
 			if (missiles[i]==null) {
 				missiles.RemoveAt (i);
@@ -27,15 +32,21 @@ public class Launcher : Weapon {
 	}
 
 	public void Buttons(Controller controller) {
-		foreach (GameObject element in missiles) {
+		/*foreach (GameObject element in missiles) {
 			if (element != null) {
 				element.GetComponent<Missile_Mover>().Buttons(controller);
 			}
+		}*/
+		if (firedMissile != null) {
+			firedMissile.GetComponent<Missile_Mover> ().Buttons (controller);
 		}
 	}
 
 	public void Fire() {
-		GameObject clone = Instantiate(missile, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
-		missiles.Add (clone);
+		if (firedMissile == null) {
+			firedMissile = Instantiate (missile, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
+		} else {
+			firedMissile.GetComponent<DestroyByContact>().selfDestruct();
+		}
 	}
 }

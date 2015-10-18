@@ -3,6 +3,7 @@ using System.Collections;
 
 public class DestroyByContact : MonoBehaviour {
 	public GameObject explosion;
+	public string ownerTag;
 	//public GameObject playerExplosion;
 	//public int scoreValue;
 	//private GameController gameController;
@@ -22,7 +23,7 @@ public class DestroyByContact : MonoBehaviour {
 	
 	void OnTriggerEnter (Collider other)
 	{
-		if (other.tag == "Boundary" || other.tag == "Wall" || other.tag == "Player")
+		if (other.tag == "Boundary" || other.tag == "Wall" || other.tag == ownerTag)
 		{
 			return;
 		}
@@ -40,6 +41,13 @@ public class DestroyByContact : MonoBehaviour {
 		
 		gameController.AddScore(scoreValue);
 		Destroy (other.gameObject);*/
+		Destroy (gameObject);
+	}
+
+	public void selfDestruct() {
+		if (explosion != null) {
+			Instantiate (explosion, transform.position, transform.rotation);
+		}
 		Destroy (gameObject);
 	}
 }
