@@ -10,10 +10,10 @@ public class Damage : MonoBehaviour {
 	void Start () {
 		if (gameObject.tag == "P1Ship" || gameObject.tag == "P2Ship") {
 			structuralIntegrity = 50;
-			damageValue = 5;
+			damageValue = 10;
 		} else if (gameObject.tag == "Asteroid") {
 			structuralIntegrity = 30;
-			damageValue = 5;
+			damageValue = 10;
 		} else if (gameObject.tag == "Explosion") {
 			structuralIntegrity = 1;
 			damageValue = 100;
@@ -41,13 +41,16 @@ public class Damage : MonoBehaviour {
 
     void OnCollisionEnter(Collision impact)
     {
-        if(impact.collider.tag == "Ship" || impact.collider.tag == "Asteroid")
+        if (impact.collider.tag == "Ship" || impact.collider.tag == "Asteroid")
         {
-            applyDamage(Mathf.FloorToInt(impact.relativeVelocity.magnitude));
+            applyDamage(10 * Mathf.FloorToInt(impact.relativeVelocity.magnitude));
         }
-        
-		if (impact.collider.GetComponent<Damage> () != null) {
-			applyDamage (impact.collider.GetComponent<Damage> ().getDamageValue ());
+    }
+
+    void OnTriggerEnter(Collider other)
+    { 
+		if (other.GetComponent<Damage> () != null) {
+			applyDamage (other.GetComponent<Damage> ().getDamageValue ());
 		}
 		return;
 	}
