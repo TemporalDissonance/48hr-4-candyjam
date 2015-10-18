@@ -29,10 +29,10 @@ public class Missile_Mover : MonoBehaviour {
 		}
 		currentrotation = body.rotation.eulerAngles;
 		body.rotation = Quaternion.Euler (currentrotation.x, currentrotation.y + turnrate * Time.deltaTime, currentrotation.z);
-        deltav = transform.forward * thrust;
+        //deltav = transform.forward * thrust;
         body.velocity = body.velocity + deltav;
-		//ps[0].startRotation(    turns rotation into degrees change from startRotation
-		//ps[1].startRotation(    turns rotation into degrees change from startRotation
+		ps [0].startRotation = Mathf.Deg2Rad * currentrotation.y - Mathf.PI;    //turns rotation into degrees change from startRotation
+		ps [1].startRotation = Mathf.Deg2Rad * currentrotation.y;    //turns rotation into degrees change from startRotation
 	}
 
 	public void Buttons(Controller controller) {
