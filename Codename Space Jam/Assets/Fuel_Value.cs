@@ -6,7 +6,6 @@ public class Fuel_Value : MonoBehaviour {
 
     public void Display_Value(float in_fuel)
     {
-        print("Fuel_Value.Display_Value is being called.");
         thetext.text = Mathf.FloorToInt(in_fuel).ToString();
     }
 
