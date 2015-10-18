@@ -28,6 +28,8 @@ public class BasicShip : MonoBehaviour {
 	//public List<GameObject> weapons;
     public float fuel;
     public float burnrate;
+    public int hull;
+    public int ammo;
 
     private Vector3 currentrotation;
 
@@ -38,14 +40,20 @@ public class BasicShip : MonoBehaviour {
         turnrate = 0f;
         fuel = 100f;
         burnrate = 1f;
+        ammo = 5;
         body = GetComponent<Rigidbody>();
     }
 
 	public void Fire()
 	{
-		myweapon.GetComponent<Launcher> ().Fire ();
-		//GameObject clone = Instantiate(missile, myweapon.transform.position, myweapon.transform.rotation) as GameObject;
-	}
+        if(ammo >= 1)
+        {
+            myweapon.GetComponent<Launcher>().Fire();
+            //GameObject clone = Instantiate(missile, myweapon.transform.position, myweapon.transform.rotation) as GameObject;
+            ammo--;
+        }
+
+    }
 
     void FixedUpdate()
     {
