@@ -45,7 +45,7 @@ public class BasicShip : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        thrust = 0.05f;
+        thrust = 0.04f;
         turnrate = 0f;
         fuel = 100f;
         burnrate = 2f;
