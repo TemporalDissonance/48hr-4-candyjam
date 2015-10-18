@@ -9,4 +9,7 @@ public class Done_Mover : MonoBehaviour
 	{
 		GetComponent<Rigidbody>().velocity = transform.forward * speed;
 	}
+
+	public void Buttons(Controller controller) {
+	}
 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class BasicShip : MonoBehaviour {
@@ -22,8 +23,9 @@ public class BasicShip : MonoBehaviour {
 	private bool fire2;
     private Vector3 deltav;
     private Rigidbody body;
-	public Transform myweapon;
+	public GameObject myweapon;
 	public GameObject missile;
+	//public List<GameObject> weapons;
     public float fuel;
     public float burnrate;
 
@@ -41,7 +43,8 @@ public class BasicShip : MonoBehaviour {
 
 	public void Fire()
 	{
-		GameObject clone = Instantiate(missile, myweapon.position, myweapon.rotation) as GameObject;
+		myweapon.GetComponent<Launcher> ().Fire ();
+		//GameObject clone = Instantiate(missile, myweapon.transform.position, myweapon.transform.rotation) as GameObject;
 	}
 
     void FixedUpdate()
@@ -52,17 +55,18 @@ public class BasicShip : MonoBehaviour {
 		deltav.z = 0;
         turnrate = 0;
 
+
 		if (command_rotatecw == ButtonState.DOWN) {
-			RotateCW();
+			RotateCW ();
 		}
 		if (command_rotateccw == ButtonState.DOWN) {
 			RotateCCW ();
 		}
 		if (command_thrust_forward == ButtonState.DOWN) {
-			ThrustForward();
+			ThrustForward ();
 		}
 		if (command_thrust_backward == ButtonState.DOWN) {
-			ThrustBackward();
+			ThrustBackward ();
 		}
 		if (command_thrust_left == ButtonState.DOWN) {
 			ThrustLeft ();
@@ -70,12 +74,11 @@ public class BasicShip : MonoBehaviour {
 		if (command_thrust_right == ButtonState.DOWN) {
 			ThrustRight ();
 		}
-		if (command_fire == ButtonState.DOWN) {
+
+		if (command_fire == ButtonState.PRESSED) {
 			Fire ();
 		}
-		if (command_alt_control == ButtonState.DOWN) {
-			Alt ();
-		}
+
 
 		/*deltav.x = horizontal;
         deltav.z = vertical;
@@ -99,14 +102,26 @@ public class BasicShip : MonoBehaviour {
     }
 
 	public void Buttons(Controller controller) {
-		command_rotatecw = controller.GetButtonState(controller.rotateRMap);
-		command_rotateccw = controller.GetButtonState(controller.rotateLMap);
-		command_thrust_forward = controller.GetButtonState(controller.thrustUMap);
-		command_thrust_backward = controller.GetButtonState(controller.thrustDMap);
-		command_thrust_left = controller.GetButtonState(controller.thrustLMap);
-		command_thrust_right = controller.GetButtonState(controller.thrustRMap);
-		command_fire = controller.GetButtonState(controller.fireMap);
 		command_alt_control = controller.GetButtonState(controller.altMap);
+		if (command_alt_control == ButtonState.DOWN) {
+			WeaponButtons (controller);
+		} else {
+			command_rotatecw = controller.GetButtonState(controller.rotateRMap);
+			command_rotateccw = controller.GetButtonState(controller.rotateLMap);
+			command_thrust_forward = controller.GetButtonState(controller.thrustUMap);
+			command_thrust_backward = controller.GetButtonState(controller.thrustDMap);
+			command_thrust_left = controller.GetButtonState(controller.thrustLMap);
+			command_thrust_right = controller.GetButtonState(controller.thrustRMap);
+		}
+		command_fire = controller.GetButtonState(controller.fireMap);
+
+	}
+
+	public void WeaponButtons(Controller controller) {
+		myweapon.GetComponent<Launcher> ().Buttons (controller);
+		/*foreach (GameObject element in weapons) {
+			element.GetComponent<Done_Mover>().Buttons(controller);
+		}*/
 	}
 
 	public void RotateCW() {
@@ -150,5 +165,6 @@ public class BasicShip : MonoBehaviour {
 	}
 
 	public void Alt() {
+
 	}
 }
