@@ -5,6 +5,8 @@ public class Player : MonoBehaviour {
 	public Controller controller;
 	public GameObject ship;
 
+    public static int winningplayer;
+
 	// Use this for initialization
 	void Start () {
 		controller = gameObject.GetComponent<Controller> ();

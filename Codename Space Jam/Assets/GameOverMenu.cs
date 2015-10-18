@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class GameOverMenu : MonoBehaviour {
-    public int winningplayer;
     private UnityEngine.UI.Text titletext;
     private GUI_Canvas ourcanvas;
     private UnityEngine.UI.Image background;
@@ -13,11 +12,11 @@ public class GameOverMenu : MonoBehaviour {
 
         thetitle = gameObject.GetComponentInChildren<Title>();
 
-        if(winningplayer == 1)
+        if(Player.winningplayer == 1)
         {
             thetitle.ChangeTitle("Player 1 Wins!");
         }
-        else if(winningplayer == 2)
+        else if(Player.winningplayer == 2)
         {
             thetitle.ChangeTitle("Player 2 Wins!");
         }
