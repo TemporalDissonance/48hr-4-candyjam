@@ -11,10 +11,14 @@ public class Player : MonoBehaviour {
 	void Start () {
 		controller = gameObject.GetComponent<Controller> ();
 	}
-	
+
+	void Update() {
+		ship.GetComponent<BasicShip>().Buttons (controller);
+	}
+
 	// Update is called once per frame
 	void FixedUpdate () {
-		ship.GetComponent<BasicShip>().Buttons (controller);
+
 		//ship.GetComponent<BasicShip>().Buttons (controller);
 		/*if (controller.fire) {
 			ship.GetComponent<BasicShip>().Fire();
