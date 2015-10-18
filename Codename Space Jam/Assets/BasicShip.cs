@@ -30,18 +30,32 @@ public class BasicShip : MonoBehaviour {
     public float burnrate;
     public int hull;
     public int ammo;
+    private Fuel_Value fuelreadout;
+    private Ammo_Value ammoreadout;
+    private Hull_Value hullreadout;
 
     private Vector3 currentrotation;
+
+    void ReportHUD()
+    {
+        fuelreadout.Display_Value(fuel);
+        ammoreadout.Display_Value(ammo);
+        hullreadout.Display_Value(hull);
+    }
 
     // Use this for initialization
     void Start()
     {
         thrust = 0.2f;
         turnrate = 0f;
+        hull = 100;
         fuel = 100f;
         burnrate = 1f;
-        ammo = 5;
+        ammo = 3;
         body = GetComponent<Rigidbody>();
+        fuelreadout = GetComponentInParent<Player>().GetComponentInChildren<Fuel_Value>();
+        ammoreadout = GetComponentInParent<Player>().GetComponentInChildren<Ammo_Value>();
+        hullreadout = GetComponentInParent<Player>().GetComponentInChildren<Hull_Value>();
     }
 
 	public void Fire()
@@ -57,6 +71,7 @@ public class BasicShip : MonoBehaviour {
 
     void FixedUpdate()
     {
+        ReportHUD();
 
 		deltav.x = 0;
 		deltav.y = 0;
