@@ -45,7 +45,7 @@ public class BasicShip : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        thrust = 0.1f;
+        thrust = 0.05f;
         turnrate = 0f;
         fuel = 100f;
         burnrate = 2f;
@@ -95,10 +95,18 @@ public class BasicShip : MonoBehaviour {
 		}
 
 
-        /*deltav.x = horizontal;
-        deltav.z = vertical;
-        deltav.y = 0;
-		*/
+        if (horizontal > 0.5) {
+			ThrustRight ();
+		} else if (horizontal < -0.5) {
+			ThrustLeft ();
+		}
+		if (vertical > 0.5) {
+			ThrustBackward ();
+		} else if (vertical < -0.5) {
+			ThrustForward ();
+		}
+
+
 
         body.velocity = body.velocity + thrust * deltav;
         currentrotation = body.rotation.eulerAngles;
