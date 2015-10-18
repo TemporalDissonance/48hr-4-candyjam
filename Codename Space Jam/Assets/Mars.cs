@@ -7,7 +7,7 @@ public class Mars : MonoBehaviour {
     {
         if(other.CompareTag("P1Ship"))
         {
-            Player.winningplayer = 1;
+            Player.winningplayer = GameOverState.P1WINSPLANET;
 			GameObject gameControllerObject = GameObject.FindGameObjectWithTag ("GameController");
 			if (gameControllerObject != null)
 			{

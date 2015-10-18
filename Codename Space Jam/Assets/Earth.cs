@@ -7,7 +7,7 @@ public class Earth : MonoBehaviour {
     {
         if (other.CompareTag("P2Ship"))
         {
-            Player.winningplayer = 2;
+            Player.winningplayer = GameOverState.P2WINSPLANET;
 			GameObject gameControllerObject = GameObject.FindGameObjectWithTag ("GameController");
 			if (gameControllerObject != null)
 			{
