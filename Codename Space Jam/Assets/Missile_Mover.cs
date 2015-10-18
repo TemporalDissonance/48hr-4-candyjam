@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Missile_Mover : MonoBehaviour {
-	public float speed;
+	public float thrust;
 	public float turnrate;
 	private Vector3 currentrotation;
 	private Vector3 deltav;
@@ -13,14 +13,11 @@ public class Missile_Mover : MonoBehaviour {
 	void Start ()
 	{
 		body = GetComponent<Rigidbody>();
-		body.velocity = transform.forward * speed;
+		body.velocity = transform.forward * thrust;
 	}
 
 	void FixedUpdate() {
-		deltav.x = 0;
-		deltav.y = 0;
-		deltav.z = 0;
-		turnrate = 0;
+        turnrate = 0;
 		if (command_rotatecw == ButtonState.DOWN) {
 			RotateCW ();
 		}
@@ -29,7 +26,8 @@ public class Missile_Mover : MonoBehaviour {
 		}
 		currentrotation = body.rotation.eulerAngles;
 		body.rotation = Quaternion.Euler (currentrotation.x, currentrotation.y + turnrate * Time.deltaTime, currentrotation.z);
-		body.velocity = 
+        deltav = transform.forward * thrust;
+        body.velocity = body.velocity + deltav;
 	}
 
 	public void Buttons(Controller controller) {
