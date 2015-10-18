@@ -60,13 +60,7 @@ public class BasicShip : MonoBehaviour {
 
 	public void Fire()
 	{
-        if(ammo >= 1)
-        {
-            myweapon.GetComponent<Launcher>().Fire();
-            //GameObject clone = Instantiate(missile, myweapon.transform.position, myweapon.transform.rotation) as GameObject;
-            ammo--;
-        }
-
+		myweapon.GetComponent<Launcher>().Fire();
     }
 
     void FixedUpdate()

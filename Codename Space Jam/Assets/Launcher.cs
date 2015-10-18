@@ -13,12 +13,14 @@ public class Launcher : Weapon {
 	//public ButtonState command_thrust_right;
 	//public GameObject firedMissile;
 	public List<GameObject> missiles;
+	public BasicShip shipParent;
 	public float missileTime;
 	public float detonateDelay;
 	// Use this for initialization
 	void Start () {
 		//firedMissile = null;
-		missileTime = 0;
+		missileTime = 99999;
+		shipParent = GetComponentInParent<BasicShip> ();
 	}
 	
 	// Update is called once per frame
@@ -55,8 +57,12 @@ public class Launcher : Weapon {
 			}
 		}*/
 		if (missileTime > detonateDelay) {
-			missiles.Add (Instantiate (missile, gameObject.transform.position, gameObject.transform.rotation) as GameObject);
-			missileTime = 0;
+			if (shipParent.ammo > 0) {
+				missiles.Add (Instantiate (missile, gameObject.transform.position, gameObject.transform.rotation) as GameObject);
+				missileTime = 0;
+				shipParent.ammo--;
+			}
+
 		}
 
 	}

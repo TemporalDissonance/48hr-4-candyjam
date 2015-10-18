@@ -4,15 +4,15 @@ using System.Collections;
 public class GameController : MonoBehaviour {
 	private bool gameOver;
 	private bool restart;
-	public GUIText restartText;
-	public GUIText gameOverText;
+	//public GUIText restartText;
+	//public GUIText gameOverText;
 
 	// Use this for initialization
 	void Start () {
 		gameOver = false;
 		restart = false;
-		restartText.text = "";
-		gameOverText.text = "";
+		//restartText.text = "";
+		//gameOverText.text = "";
 	}
 	
 	// Update is called once per frame
@@ -26,14 +26,14 @@ public class GameController : MonoBehaviour {
 		}
 		if (gameOver)
 		{
-			restartText.text = "Press 'R' for Restart";
+			//restartText.text = "Press 'R' for Restart";
 			restart = true;
 		}
 	}
 
 	public void GameOver ()
 	{
-		gameOverText.text = "Game Over!";
+		//gameOverText.text = "Game Over!";
 		gameOver = true;
 		Application.LoadLevel("gameover");
 	}
