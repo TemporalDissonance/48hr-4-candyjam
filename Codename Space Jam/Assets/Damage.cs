@@ -18,7 +18,7 @@ public class Damage : MonoBehaviour {
 			structuralIntegrity = 1;
 			damageValue = 100;
 		} else {
-			structuralIntegrity = 1000;
+			structuralIntegrity = 100000;
 			damageValue = 0;
 		}
 	}
@@ -42,7 +42,9 @@ public class Damage : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other)
 	{
-		applyDamage (other.GetComponent<Damage>().getDamageValue());
+		if (other.GetComponent<Damage> () != null) {
+			applyDamage (other.GetComponent<Damage> ().getDamageValue ());
+		}
 		return;
 	}
 

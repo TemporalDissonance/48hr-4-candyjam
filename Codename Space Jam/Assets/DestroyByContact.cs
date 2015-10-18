@@ -10,7 +10,6 @@ public class DestroyByContact : MonoBehaviour {
 	
 	void Start ()
 	{
-		myaudio = gameObject.GetComponent<AudioSource> ();
 		/*GameObject gameControllerObject = GameObject.FindGameObjectWithTag ("GameController");
 		if (gameControllerObject != null)
 		{
