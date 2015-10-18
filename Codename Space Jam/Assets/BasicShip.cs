@@ -28,7 +28,6 @@ public class BasicShip : MonoBehaviour {
 	//public List<GameObject> weapons;
     public float fuel;
     public float burnrate;
-    public int hull;
     public int ammo;
     private Fuel_Value fuelreadout;
     private Ammo_Value ammoreadout;
@@ -40,7 +39,7 @@ public class BasicShip : MonoBehaviour {
     {
         fuelreadout.Display_Value(fuel);
         ammoreadout.Display_Value(ammo);
-        hullreadout.Display_Value(hull);
+        hullreadout.Display_Value(gameObject.GetComponent<Damage>().structuralIntegrity);
     }
 
     // Use this for initialization
@@ -48,8 +47,7 @@ public class BasicShip : MonoBehaviour {
     {
         thrust = 0.1f;
         turnrate = 0f;
-        hull = 100;
-        fuel = 50f;
+        fuel = 100f;
         burnrate = 2f;
         ammo = 10;
         body = GetComponent<Rigidbody>();
