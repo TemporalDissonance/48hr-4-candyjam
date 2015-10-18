@@ -9,11 +9,14 @@ public class Missile_Mover : MonoBehaviour {
 	public ButtonState command_rotatecw;
 	public ButtonState command_rotateccw;
 	private Rigidbody body;
+	public ParticleSystem[] ps;
 
 	void Start ()
 	{
 		body = GetComponent<Rigidbody>();
 		body.velocity = transform.forward * thrust;
+		ps = GetComponentsInChildren<ParticleSystem>();
+
 	}
 
 	void FixedUpdate() {
@@ -28,6 +31,8 @@ public class Missile_Mover : MonoBehaviour {
 		body.rotation = Quaternion.Euler (currentrotation.x, currentrotation.y + turnrate * Time.deltaTime, currentrotation.z);
         deltav = transform.forward * thrust;
         body.velocity = body.velocity + deltav;
+		//ps[0].startRotation(    turns rotation into degrees change from startRotation
+		//ps[1].startRotation(    turns rotation into degrees change from startRotation
 	}
 
 	public void Buttons(Controller controller) {
