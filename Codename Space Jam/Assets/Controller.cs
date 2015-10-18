@@ -26,7 +26,7 @@ public class Controller : MonoBehaviour {
 	
     void Start()
     {
-		horizontalMap = "Horizontal";
+		/*horizontalMap = "Horizontal";
 		verticalMap = "Vertical";
 		fireMap = "Fire1";
 		altMap = "Alt";
@@ -35,7 +35,7 @@ public class Controller : MonoBehaviour {
 		thrustLMap = "ThrustLeft";
 		thrustRMap = "ThrustRight";
 		rotateLMap = "RotateLeft";
-		rotateRMap = "RotateRight";
+		rotateRMap = "RotateRight";*/
     }
 
 	void Update() 
