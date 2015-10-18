@@ -49,7 +49,7 @@ public class BasicShip : MonoBehaviour {
         thrust = 0.2f;
         turnrate = 0f;
         hull = 100;
-        fuel = 100f;
+        fuel = 50f;
         burnrate = 1f;
         ammo = 10;
         body = GetComponent<Rigidbody>();
