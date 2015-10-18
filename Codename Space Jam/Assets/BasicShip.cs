@@ -50,7 +50,7 @@ public class BasicShip : MonoBehaviour {
         turnrate = 0f;
         hull = 100;
         fuel = 50f;
-        burnrate = 1f;
+        burnrate = 2f;
         ammo = 10;
         body = GetComponent<Rigidbody>();
         fuelreadout = GetComponentInParent<Player>().GetComponentInChildren<Fuel_Value>();
@@ -163,7 +163,7 @@ public class BasicShip : MonoBehaviour {
 	}
 
 	public void ThrustForward() {
-        if (fuel > 0)
+        if (fuel >= burnrate * Time.fixedDeltaTime)
         {
             deltav.z = 1;
             fuel = fuel - burnrate * Time.fixedDeltaTime;
@@ -171,7 +171,7 @@ public class BasicShip : MonoBehaviour {
     }
 
 	public void ThrustBackward() {
-        if (fuel > 0)
+        if (fuel >= burnrate * Time.fixedDeltaTime)
         {
             deltav.z = -1;
             fuel = fuel - burnrate * Time.fixedDeltaTime;
@@ -179,7 +179,7 @@ public class BasicShip : MonoBehaviour {
 	}
 
 	public void ThrustLeft() {
-        if (fuel > 0)
+        if (fuel >= burnrate * Time.fixedDeltaTime)
         {
             deltav.x = -1;
             fuel = fuel - burnrate * Time.fixedDeltaTime;
@@ -187,7 +187,7 @@ public class BasicShip : MonoBehaviour {
 	}
 
 	public void ThrustRight() {
-        if(fuel > 0)
+        if (fuel >= burnrate * Time.fixedDeltaTime)
         {
             deltav.x = 1;
             fuel = fuel - burnrate * Time.fixedDeltaTime;
