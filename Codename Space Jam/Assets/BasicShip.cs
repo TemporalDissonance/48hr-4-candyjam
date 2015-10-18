@@ -45,7 +45,7 @@ public class BasicShip : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        thrust = 0.05f;
+        thrust = 0.01f;
         turnrate = 0f;
         fuel = 100f;
         burnrate = 2f;
@@ -106,7 +106,13 @@ public class BasicShip : MonoBehaviour {
 			ThrustForward ();
 		}
 
-
+		if (fuel <= 0 && ammo <= 0) {
+			if (gameObject.tag == "P1SHIP") {
+				Player.P1OUT = true;
+			} else if (gameObject.tag == "P2SHIP") {
+				Player.P2OUT = true;
+			}
+		}
 
         body.velocity = body.velocity + thrust * deltav;
         currentrotation = body.rotation.eulerAngles;
@@ -131,18 +137,19 @@ public class BasicShip : MonoBehaviour {
 			WeaponButtons (controller);
 			command_rotatecw = ButtonState.UP;
 			command_rotateccw = ButtonState.UP;
-			command_thrust_forward = ButtonState.UP;
+			/*command_thrust_forward = ButtonState.UP;
 			command_thrust_backward = ButtonState.UP;
 			command_thrust_left = ButtonState.UP;
-			command_thrust_right = ButtonState.UP;
+			command_thrust_right = ButtonState.UP;*/
 		} else {
-			command_rotatecw = controller.GetButtonState(controller.rotateRMap);
-			command_rotateccw = controller.GetButtonState(controller.rotateLMap);
-			command_thrust_forward = controller.GetButtonState(controller.thrustUMap);
-			command_thrust_backward = controller.GetButtonState(controller.thrustDMap);
-			command_thrust_left = controller.GetButtonState(controller.thrustLMap);
-			command_thrust_right = controller.GetButtonState(controller.thrustRMap);
+			command_rotatecw = controller.GetButtonState (controller.rotateRMap);
+			command_rotateccw = controller.GetButtonState (controller.rotateLMap);
 		}
+			
+		command_thrust_forward = controller.GetButtonState(controller.thrustUMap);
+		command_thrust_backward = controller.GetButtonState(controller.thrustDMap);
+		command_thrust_left = controller.GetButtonState(controller.thrustLMap);
+		command_thrust_right = controller.GetButtonState(controller.thrustRMap);
 
 
 	}

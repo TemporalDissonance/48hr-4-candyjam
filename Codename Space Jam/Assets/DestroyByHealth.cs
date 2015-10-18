@@ -14,7 +14,11 @@ public class DestroyByHealth : MonoBehaviour {
 		if (damage.structuralIntegrity <= 0) {
 			Instantiate (explosion, transform.position, transform.rotation);
 			if (gameObject.tag == "P1Ship") {
-				Player.winningplayer = GameOverState.P1DIES;
+				if (Player.winningplayer == GameOverState.P2DIES) {
+					Player.winningplayer = GameOverState.EVERYONEDIES;
+				} else {
+					Player.winningplayer = GameOverState.P1DIES;
+				}
 				GameObject gameControllerObject = GameObject.FindGameObjectWithTag ("GameController");
 				if (gameControllerObject != null)
 				{
@@ -26,7 +30,11 @@ public class DestroyByHealth : MonoBehaviour {
 					Debug.Log ("Cannot find 'GameController' script");
 				}     
 			} else if (gameObject.tag == "P2Ship") {
-				Player.winningplayer = GameOverState.P2DIES;
+				if (Player.winningplayer == GameOverState.P1DIES) {
+					Player.winningplayer = GameOverState.EVERYONEDIES;
+				} else {
+					Player.winningplayer = GameOverState.P2DIES;
+				}
 				GameObject gameControllerObject = GameObject.FindGameObjectWithTag ("GameController");
 				if (gameControllerObject != null)
 				{

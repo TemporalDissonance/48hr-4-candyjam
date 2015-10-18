@@ -58,11 +58,12 @@ public class Launcher : Weapon {
 		}*/
 		if (missileTime > detonateDelay) {
 			if (shipParent.ammo > 0) {
-				missiles.Add (Instantiate (missile, gameObject.transform.position, gameObject.transform.rotation) as GameObject);
+				GameObject firedMissile = Instantiate (missile, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
+				//firedMissile.GetComponent<Rigidbody>().velocity += gameObject.GetComponent<Rigidbody>().velocity;
+				missiles.Add (firedMissile);
 				missileTime = 0;
 				shipParent.ammo--;
 			}
-
 		}
 
 	}

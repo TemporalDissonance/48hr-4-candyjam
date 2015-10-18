@@ -7,7 +7,8 @@ public enum GameOverState {
 	P2WINSPLANET,
 	P1DIES,
 	P2DIES,
-	EVERYONEDIES
+	EVERYONEDIES,
+	NOONEWINS
 };
 
 public class GameController : MonoBehaviour {
@@ -45,6 +46,10 @@ public class GameController : MonoBehaviour {
 					Application.LoadLevel ("gameover");
 				} 
 			}
+		}
+		if (Player.P1OUT && Player.P2OUT) {
+			Player.winningplayer = GameOverState.NOONEWINS;
+			Application.LoadLevel ("gameover");
 		}
 	}
 

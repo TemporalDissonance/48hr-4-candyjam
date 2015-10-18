@@ -6,10 +6,15 @@ public class Player : MonoBehaviour {
 	public GameObject ship;
 
     public static GameOverState winningplayer;
+	public static bool P1OUT;
+	public static bool P2OUT;
 
 	// Use this for initialization
 	void Start () {
 		controller = gameObject.GetComponent<Controller> ();
+		P1OUT = false;
+		P2OUT = false;
+		winningplayer = GameOverState.NOTOVER;
 	}
 
 	void Update() {
