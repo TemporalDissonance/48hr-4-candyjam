@@ -103,8 +103,15 @@ public class BasicShip : MonoBehaviour {
 
 	public void Buttons(Controller controller) {
 		command_alt_control = controller.GetButtonState(controller.altMap);
+		command_fire = controller.GetButtonState(controller.fireMap);
 		if (command_alt_control == ButtonState.DOWN) {
 			WeaponButtons (controller);
+			command_rotatecw = ButtonState.UP;
+			command_rotateccw = ButtonState.UP;
+			command_thrust_forward = ButtonState.UP;
+			command_thrust_backward = ButtonState.UP;
+			command_thrust_left = ButtonState.UP;
+			command_thrust_right = ButtonState.UP;
 		} else {
 			command_rotatecw = controller.GetButtonState(controller.rotateRMap);
 			command_rotateccw = controller.GetButtonState(controller.rotateLMap);
@@ -113,7 +120,7 @@ public class BasicShip : MonoBehaviour {
 			command_thrust_left = controller.GetButtonState(controller.thrustLMap);
 			command_thrust_right = controller.GetButtonState(controller.thrustRMap);
 		}
-		command_fire = controller.GetButtonState(controller.fireMap);
+
 
 	}
 
