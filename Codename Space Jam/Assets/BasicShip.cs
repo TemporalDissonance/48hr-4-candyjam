@@ -103,14 +103,14 @@ public class BasicShip : MonoBehaviour {
 		}
 
 
-		/*deltav.x = horizontal;
+        /*deltav.x = horizontal;
         deltav.z = vertical;
         deltav.y = 0;
 		*/
 
         body.velocity = body.velocity + thrust * deltav;
         currentrotation = body.rotation.eulerAngles;
-        body.rotation = Quaternion.Euler (currentrotation.x, currentrotation.y + turnrate * Time.deltaTime, currentrotation.z);
+        body.rotation = Quaternion.Euler (0.0f, currentrotation.y + turnrate * Time.deltaTime, 0.0f);
 
     }
 
