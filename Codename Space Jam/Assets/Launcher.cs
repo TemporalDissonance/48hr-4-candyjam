@@ -13,6 +13,7 @@ public class Launcher : Weapon {
 	//public ButtonState command_thrust_right;
 	public GameObject firedMissile;
 	public float missileTime;
+	public float detonateDelay;
 	// Use this for initialization
 	void Start () {
 		firedMissile = null;
@@ -24,6 +25,7 @@ public class Launcher : Weapon {
 		if (firedMissile != null) {
 			missileTime += Time.fixedDeltaTime;
 		}
+			
 		/*for (int i = missiles.Count-1; i > 0; i--) {
 			if (missiles[i]==null) {
 				missiles.RemoveAt (i);
@@ -45,8 +47,11 @@ public class Launcher : Weapon {
 	public void Fire() {
 		if (firedMissile == null) {
 			firedMissile = Instantiate (missile, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
+			missileTime = 0;
 		} else {
-			firedMissile.GetComponent<DestroyByContact>().selfDestruct();
+			if (missileTime > detonateDelay) {
+				firedMissile.GetComponent<DestroyByContact>().selfDestruct();
+			}
 		}
 	}
 }
