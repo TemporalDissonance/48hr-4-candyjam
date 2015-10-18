@@ -7,7 +7,6 @@ public class DestroyByContact : MonoBehaviour {
     //public GameObject playerExplosion;
     //public int scoreValue;
     //private GameController gameController;
-	public AudioSource myaudio;
 	
 	void Start ()
 	{
@@ -33,7 +32,6 @@ public class DestroyByContact : MonoBehaviour {
 		if (explosion != null)
 		{
 			Instantiate(explosion, transform.position, transform.rotation);
-			myaudio.Play ();
 		}
 		
 		/*if (other.tag == "Player")
@@ -48,7 +46,6 @@ public class DestroyByContact : MonoBehaviour {
 	}
 
 	public void selfDestruct() {
-			myaudio.Play ();
 
 		if (explosion != null) {
 			Instantiate (explosion, transform.position, transform.rotation);

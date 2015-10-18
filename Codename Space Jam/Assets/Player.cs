@@ -14,6 +14,8 @@ public class Player : MonoBehaviour {
 
 	void Update() {
 		ship.GetComponent<BasicShip>().Buttons (controller);
+		ship.GetComponent<BasicShip>().SetHorizontal(controller.horizontal);
+		ship.GetComponent<BasicShip>().SetVertical(controller.vertical);
 	}
 
 	// Update is called once per frame
