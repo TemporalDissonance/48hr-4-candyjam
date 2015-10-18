@@ -19,12 +19,18 @@ public class Launcher : Weapon {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		/*for (int i = missiles.Count-1; i > 0; i--) {
+			if (missiles[i]==null) {
+				missiles.RemoveAt (i);
+			}
+		}*/
 	}
 
 	public void Buttons(Controller controller) {
 		foreach (GameObject element in missiles) {
-			element.GetComponent<Missile_Mover>().Buttons(controller);
+			if (element != null) {
+				element.GetComponent<Missile_Mover>().Buttons(controller);
+			}
 		}
 	}
 
