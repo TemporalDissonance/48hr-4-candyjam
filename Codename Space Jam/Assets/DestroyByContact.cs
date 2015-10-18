@@ -7,10 +7,11 @@ public class DestroyByContact : MonoBehaviour {
     //public GameObject playerExplosion;
     //public int scoreValue;
     //private GameController gameController;
-    private AudioSource audio;
+	public AudioSource myaudio;
 	
 	void Start ()
 	{
+		myaudio = gameObject.GetComponent<AudioSource> ();
 		/*GameObject gameControllerObject = GameObject.FindGameObjectWithTag ("GameController");
 		if (gameControllerObject != null)
 		{
@@ -32,7 +33,7 @@ public class DestroyByContact : MonoBehaviour {
 		if (explosion != null)
 		{
 			Instantiate(explosion, transform.position, transform.rotation);
-            audio.Play();
+			myaudio.Play ();
 		}
 		
 		/*if (other.tag == "Player")
@@ -47,10 +48,12 @@ public class DestroyByContact : MonoBehaviour {
 	}
 
 	public void selfDestruct() {
+			myaudio.Play ();
+
 		if (explosion != null) {
 			Instantiate (explosion, transform.position, transform.rotation);
-            audio.Play();
+
 		}
-		Destroy (gameObject);
+		Destroy (this.gameObject);
 	}
 }
