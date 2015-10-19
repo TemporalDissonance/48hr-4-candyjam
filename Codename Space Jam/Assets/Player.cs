@@ -22,6 +22,8 @@ public class Player : MonoBehaviour {
 			ship.GetComponent<BasicShip> ().Buttons (controller);
 			ship.GetComponent<BasicShip> ().SetHorizontal (controller.horizontal);
 			ship.GetComponent<BasicShip> ().SetVertical (controller.vertical);
+		} else {
+			GetComponentInChildren<Hull_Value>().Display_Value (0);
 		}
 	}
 
