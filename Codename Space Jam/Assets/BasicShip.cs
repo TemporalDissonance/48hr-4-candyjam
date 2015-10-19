@@ -12,7 +12,8 @@ public class BasicShip : MonoBehaviour {
 	public ButtonState command_thrust_left;
 	public ButtonState command_thrust_right;
 	public ButtonState command_fire;
-	public ButtonState command_alt_control;
+	public ButtonState command_missile_rotatecw;
+    public ButtonState command_missile_rotateccw;
 
     public float thrust;
     public float turnrate;
@@ -131,27 +132,17 @@ public class BasicShip : MonoBehaviour {
     }
 
 	public void Buttons(Controller controller) {
-		command_alt_control = controller.GetButtonState(controller.altMap);
 		command_fire = controller.GetButtonState(controller.fireMap);
-		if (command_alt_control == ButtonState.DOWN) {
-			WeaponButtons (controller);
-			command_rotatecw = ButtonState.UP;
-			command_rotateccw = ButtonState.UP;
-			/*command_thrust_forward = ButtonState.UP;
-			command_thrust_backward = ButtonState.UP;
-			command_thrust_left = ButtonState.UP;
-			command_thrust_right = ButtonState.UP;*/
-		} else {
-			command_rotatecw = controller.GetButtonState (controller.rotateRMap);
-			command_rotateccw = controller.GetButtonState (controller.rotateLMap);
-		}
-			
+        command_missile_rotateccw = controller.GetButtonState(controller.missilerotateRMap);
+        command_missile_rotatecw = controller.GetButtonState(controller.missilerotateLMap);
+		WeaponButtons (controller);
+   
+		command_rotatecw = controller.GetButtonState (controller.rotateRMap);
+		command_rotateccw = controller.GetButtonState (controller.rotateLMap);
 		command_thrust_forward = controller.GetButtonState(controller.thrustUMap);
 		command_thrust_backward = controller.GetButtonState(controller.thrustDMap);
 		command_thrust_left = controller.GetButtonState(controller.thrustLMap);
 		command_thrust_right = controller.GetButtonState(controller.thrustRMap);
-
-
 	}
 
 	public void WeaponButtons(Controller controller) {

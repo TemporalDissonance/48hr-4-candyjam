@@ -19,7 +19,7 @@ public class Missile_Mover : MonoBehaviour {
 
 	}
 
-	void FixedUpdate() {
+	void Update() {
         turnrate = 0;
 		if (command_rotatecw == ButtonState.DOWN) {
 			RotateCW ();
@@ -36,8 +36,8 @@ public class Missile_Mover : MonoBehaviour {
 	}
 
 	public void Buttons(Controller controller) {
-		command_rotatecw = controller.GetButtonState(controller.rotateRMap);
-		command_rotateccw = controller.GetButtonState(controller.rotateLMap);
+		command_rotatecw = controller.GetButtonState(controller.missilerotateRMap);
+		command_rotateccw = controller.GetButtonState(controller.missilerotateLMap);
 	}
 	public void RotateCW() {
 		turnrate = 200f;

@@ -20,7 +20,8 @@ public class Controller : MonoBehaviour {
 	public string rotateLMap;
 	public string rotateRMap;
 	public string fireMap;
-	public string altMap;
+	public string missilerotateRMap;
+    public string missilerotateLMap;
 	public float horizontal;
 	public float vertical;
 	

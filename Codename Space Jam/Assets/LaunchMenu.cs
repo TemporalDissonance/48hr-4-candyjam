@@ -10,12 +10,13 @@ public class LaunchMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown ("Submit")) {
+		if (Input.GetButtonDown ("Submit"))
+        {
 			Application.LoadLevel ("main");
 		}
-		if (Input.GetButtonDown ("Cancel")) {
-
-			Application.LoadLevel ("launch");
+		if (Input.GetButtonDown ("Cancel"))
+        {
+			Application.Quit();
 		}
     }
 }
